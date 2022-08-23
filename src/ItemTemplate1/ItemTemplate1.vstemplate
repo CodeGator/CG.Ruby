@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>CodeGator Repository</Name>
+    <Description>A C# generated CRUD repository.</Description>
+    <Icon>ItemTemplate1.ico</Icon>
+    <TemplateID>9ce87ff9-d10e-4f1c-b379-ff7f93bae804</TemplateID>
+    <ProjectType>CSharp</ProjectType>
+	<ProjectSubType>Data</ProjectSubType>
+    <RequiredFrameworkVersion>2.0</RequiredFrameworkVersion>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+	<DefaultName>Repository.cs</DefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <References>
+      <Reference>
+        <Assembly>System</Assembly>
+      </Reference>
+    </References>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="$newclassname$.cs">DefaultRepository.cs</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="$newclassname$.cs">EfCoreRepository.cs</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="$newifacename$.cs">IRepository.cs</ProjectItem>      
+	  <ProjectItem ReplaceParameters="true" TargetFileName="RepositoryException.cs">RepositoryException.cs</ProjectItem>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>CG.Ruby.VSIXProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ae7b24e69016d0dd</Assembly>
+	<FullClassName>CG.Ruby.VSIXProject.VSWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>
