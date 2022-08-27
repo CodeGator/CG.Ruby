@@ -21,6 +21,22 @@ steps:
     versionSpec: '5.1.0'
     checkLatest: true
 
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Syncfusion.Tools.WPF.dll'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Syncfusion.Themes.MaterialDark.WPF.dll'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Syncfusion.Shared.Wpf.dll'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Syncfusion.SfSkinManager.WPF.dll'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
