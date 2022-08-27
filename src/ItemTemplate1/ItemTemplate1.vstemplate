@@ -19,6 +19,7 @@
     </References>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="$newclassname$.cs">DefaultRepository.cs</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="$newclassname$.cs">EfCoreRepository.cs</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="$newclassname$.cs">EfCoreRepository2.cs</ProjectItem>
 	  <ProjectItem ReplaceParameters="true" TargetFileName="$newifacename$.cs">IRepository.cs</ProjectItem>      
 	  <ProjectItem ReplaceParameters="true" TargetFileName="RepositoryException.cs">RepositoryException.cs</ProjectItem>
   </TemplateContent>

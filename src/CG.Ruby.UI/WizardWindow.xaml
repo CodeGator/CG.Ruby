@@ -11,11 +11,11 @@
     x:Class="CG.Ruby.UI.WizardWindow"
     mc:Ignorable="d"
     Title="New CodeGator Repository" 
-    Height="480" 
-    Width="640"
+    Height="520" 
+    Width="680"
     ResizeMode="CanResizeWithGrip"
     UseNativeChrome="True"
-    WindowStartupLocation="CenterOwner">
+    WindowStartupLocation="CenterScreen">
 
     <syncfusion:ChromelessWindow.Resources>
         <ctrl:BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
@@ -98,6 +98,7 @@
                                   SelectedValue="{Binding SelectedEfCoreContextClass, Mode=TwoWay, ValidatesOnDataErrors=True}" 
                                   x:Name="efCoreClass" />
                         <TextBlock Text="{Binding SelectedEfCoreContextClassError}" Foreground="Red" />
+                        <CheckBox IsChecked="{Binding UseDataContextFactory}">Use Data-Context Factory</CheckBox>
                     </StackPanel>                    
                 </StackPanel>                
             </syncfusion:WizardPage>
@@ -177,6 +178,7 @@
                                FontWeight="Medium"
                                TextWrapping="Wrap"/>
                     <StackPanel Orientation="Vertical" CanVerticallyScroll="True">
+                        <CheckBox IsChecked="{Binding AddAnyAsync}">AnyAsync</CheckBox>
                         <CheckBox IsChecked="{Binding AddCreateAsync}">CreateAsync</CheckBox>
                         <CheckBox IsChecked="{Binding AddFindAsync}">FindAsync</CheckBox>
                         <CheckBox IsChecked="{Binding AddFindSingleAsync}">FindSingleAsync</CheckBox>

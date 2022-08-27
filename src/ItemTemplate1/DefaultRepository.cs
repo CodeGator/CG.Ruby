@@ -15,6 +15,23 @@ namespace $newnamespace$
 	/// </summary>
 	internal class $newclassname$ : $newifacename$
 	{
+		// *******************************************************************
+        // Public methods.
+        // *******************************************************************
+		
+		#region Public methods
+		$if$ ($addcreateasync$ == true)
+		/// <inheritdoc/>
+		public virtual async Task<bool> AnyAsync(
+            Expression<Func<$modelclass$, bool>> expression,
+            CancellationToken cancellationToken = default
+            )
+		{
+			// TODO : write the code for this.
+			throw new NotImplementedException();
+		}
+		$endif$
+		// *******************************************************************
 		$if$ ($addcreateasync$ == true)
 		/// <inheritdoc/>
 		public virtual async Task<$modelclass$> CreateAsync(
@@ -23,45 +40,57 @@ namespace $newnamespace$
             )
 		{
 			// TODO : write the code for this.
+			throw new NotImplementedException();
 		}
 		$endif$
+		// *******************************************************************
 		$if$ ($adddeleteasync$ == true)
+		/// <inheritdoc/>
 		public virtual async Task DeleteAsync(
 			$modelclass$ model,
             CancellationToken cancellationToken = default
             )
 		{
 			// TODO : write the code for this.
+			throw new NotImplementedException();
 		}
 		$endif$
+		// *******************************************************************
 		$if$ ($addfindasync$ == true)
+		/// <inheritdoc/>
 		public virtual async Task<IEnumerable<$modelclass$>> FindAsync(
             Expression<Func<$modelclass$, bool>> expression,
             CancellationToken cancellationToken = default
             )
 		{
 			// TODO : write the code for this.
-			return Array.Empty<$modelclass$>(); 
+			throw new NotImplementedException();
 		}
 		$endif$
+		// *******************************************************************
 		$if$ ($addfindsingleasync$ == true)
+		/// <inheritdoc/>
 		public virtual async Task<$modelclass$?> FindSingleAsync(
             Expression<Func<$modelclass$, bool>> expression,
             CancellationToken cancellationToken = default
             )
 		{
 			// TODO : write the code for this.
-			return null;
+			throw new NotImplementedException();
 		}
 		$endif$
+		// *******************************************************************
 		$if$ ($addupdateasync$ == true)
+		/// <inheritdoc/>
 		public virtual async Task<$modelclass$> UpdateAsync(
 			$modelclass$ model,
             CancellationToken cancellationToken = default
             )
 		{
 			// TODO : write the code for this.
+			throw new NotImplementedException();
 		}
 		$endif$		
+		#endregion
 	}
 }

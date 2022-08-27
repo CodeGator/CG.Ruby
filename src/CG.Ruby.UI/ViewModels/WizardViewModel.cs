@@ -31,6 +31,17 @@ namespace CG.Ruby.UI.ViewModels
         protected Dictionary<string, Dictionary<string, List<string>>> _table =
             new Dictionary<string, Dictionary<string, List<string>>>();
 
+
+        /// <summary>
+        /// This field backs the <see cref="UseDataContextFactory"/> property.
+        /// </summary>
+        protected bool _useDataContextFactory;
+
+        /// <summary>
+        /// This field backs the <see cref="AddAnyAsync"/> property.
+        /// </summary>
+        protected bool _addAnyAsync;
+
         /// <summary>
         /// This field backs the <see cref="AddCreateAsync"/> property.
         /// </summary>
@@ -210,6 +221,44 @@ namespace CG.Ruby.UI.ViewModels
         public bool EFCoreTypeChosen
         {
             get => SelectedRepoType == "EfCore";
+        }
+
+        /// <summary>
+        /// This property contains a flag for using an EFCORE data context in the repository.
+        /// </summary>
+        public bool UseDataContextFactory
+        {
+            get => _useDataContextFactory;
+            set
+            {
+                // Set the summary.
+                _summary[nameof(UseDataContextFactory)] = value ?
+                    $"Using EFCORE data-context factory"
+                    : "Using EFCORE data-context";
+                OnPropertyChanged(nameof(SummaryList));
+
+                // Set the value.
+                SetValue(ref _useDataContextFactory, value);
+            }
+        }
+
+        /// <summary>
+        /// This property contains a flag for adding the AnyAsync method.
+        /// </summary>
+        public bool AddAnyAsync
+        {
+            get => _addAnyAsync;
+            set
+            {
+                // Set the summary.
+                _summary[nameof(AddAnyAsync)] = value ?
+                    $"Adding an AddAnyAsync method"
+                    : "Not adding an AddAnyAsync method";
+                OnPropertyChanged(nameof(SummaryList));
+
+                // Set the value.
+                SetValue(ref _addAnyAsync, value);
+            }
         }
 
         /// <summary>

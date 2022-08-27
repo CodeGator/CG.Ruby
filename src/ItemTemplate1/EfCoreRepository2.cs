@@ -22,9 +22,9 @@ namespace $newnamespace$
         #region Fields
         
 		/// <summary>
-        /// This field contains the EFCORE data-context factory for this repository.
+        /// This field contains the EFCORE data-context for this repository.
         /// </summary>
-		protected readonly IDbContextFactory<$efcorecontextclass$> _dbContextFactory;
+		protected readonly $efcorecontextclass$ _dbContext;
 
         /// <summary>
         /// This field contains the logger for this repository.
@@ -43,16 +43,16 @@ namespace $newnamespace$
         /// This constructor creates a new instance of the <see cref="$newclassname$"/>
         /// class.
         /// </summary>
-        /// <param name="dbContextFactory">The EFCORE data-context factory
-		/// to use with this repository.</param>
+        /// <param name="dbContext">The EFCORE data-context to use with this 
+		/// repository.</param>
 		/// <param name="logger">The logger to use with this repository.</param>
 		public $newclassname$(
-            IDbContextFactory<$efcorecontextclass$> dbContextFactory,
+            $efcorecontextclass$ dbContext,
 			ILogger<$newclassname$> logger
             )
 		{
 			// Save the reference(s).
-			_dbContextFactory = dbContextFactory;
+			_dbContext = dbContext;
             _logger = logger;
 		}
 
@@ -74,22 +74,12 @@ namespace $newnamespace$
 			{
 				// Log what we are about to do.
 				_logger.LogDebug(
-                    "Creating a $efcorecontextclass$ data-context"
-                    );
-
-				// Create a database context.
-				using var dbContext = await _dbContextFactory.CreateDbContextAsync(
-					cancellationToken
-					).ConfigureAwait(false);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
                     "Creating a new $modelclass$ instance in the " +
 					"$efcorecontextclass$ data-context"
                     );
 
 				// Create the entity in the data-store.
-				var data = await dbContext.Set<$modelclass$>().AnyAsync(
+				var data = await _dbContext.Set<$modelclass$>().AnyAsync(
 					expression,
 					cancellationToken
 					).ConfigureAwait(false);
@@ -127,22 +117,12 @@ namespace $newnamespace$
 			{
 				// Log what we are about to do.
 				_logger.LogDebug(
-                    "Creating a $efcorecontextclass$ data-context"
-                    );
-
-				// Create a database context.
-				using var dbContext = await _dbContextFactory.CreateDbContextAsync(
-					cancellationToken
-					).ConfigureAwait(false);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
                     "Creating a new $modelclass$ instance in the " +
 					"$efcorecontextclass$ data-context"
                     );
 
 				// Create the entity in the data-store.
-				var entity = await dbContext.Set<$modelclass$>()
+				var entity = await _dbContext.Set<$modelclass$>()
 					.AddAsync(
 						model,
 						cancellationToken
@@ -154,7 +134,7 @@ namespace $newnamespace$
                     );
 
 				// Save the changes.
-				await dbContext.SaveChangesAsync(
+				await _dbContext.SaveChangesAsync(
 		            cancellationToken
 			        ).ConfigureAwait(false);
 
@@ -191,36 +171,13 @@ namespace $newnamespace$
 			{
 				// Log what we are about to do.
 				_logger.LogDebug(
-					"Creating a $efcorecontextclass$ data-context"
-					);
-
-				// Create a database context.
-				using var dbContext = await _dbContextFactory.CreateDbContextAsync(
-					cancellationToken
-					).ConfigureAwait(false);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
-					"Attaching a $modelclass$ instance to the $efcorecontextclass$ " +
-					"data-context"
-					);
-
-				// Get a tracked instance from the data-store.
-				var trackedMimeType = dbContext.Set<$modelclass$>().Attach(
-					model
-					);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
 					"Removing a $modelclass$ instance from the " +
 					"$efcorecontextclass$ data-context"
 					);
 
 				// Remove the entity from the data-store.
-				var entity = dbContext.Set<$modelclass$>()
-					.Remove(
-						trackedMimeType.Entity
-						);
+				var entity = _dbContext.Set<$modelclass$>()
+					.Remove(model);
 
 				// Log what we are about to do.
 				_logger.LogDebug(
@@ -228,7 +185,7 @@ namespace $newnamespace$
 					);
 
 				// Save the changes.
-				await dbContext.SaveChangesAsync(
+				await _dbContext.SaveChangesAsync(
 					cancellationToken
 					).ConfigureAwait(false);
 			}
@@ -262,25 +219,16 @@ namespace $newnamespace$
 			{
 				// Log what we are about to do.
 				_logger.LogDebug(
-					"Creating a $efcorecontextclass$ data-context"
-					);
-
-				// Create a database context.
-				using var dbContext = await _dbContextFactory.CreateDbContextAsync(
-					cancellationToken
-					).ConfigureAwait(false);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
                     "Searching for matching $modelclass$ instances from" +
 					"a $efcorecontextclass$ data-context"
                     );
 
 				// Perform the search.
-				var data = await dbContext.Set<$modelclass$>().Where(expression)
-					.ToListAsync(
-						cancellationToken
-						).ConfigureAwait(false);
+				var data = await _dbContext.Set<$modelclass$>().Where(
+						expression
+						).ToListAsync(
+							cancellationToken
+							).ConfigureAwait(false);
 
 				// Return the result.
 				return data;
@@ -316,22 +264,12 @@ namespace $newnamespace$
 			{
 				// Log what we are about to do.
 				_logger.LogDebug(
-					"Creating a $efcorecontextclass$ data-context"
-					);
-
-				// Create a database context.
-				using var dbContext = await _dbContextFactory.CreateDbContextAsync(
-					cancellationToken
-					).ConfigureAwait(false);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
 					"Searching for a matching $modelclass$ instance from" +
 					"a $efcorecontextclass$ data-context"
 					);
 
 				// Perform the search.
-				var data = await dbContext.Set<$modelclass$>().Where(
+				var data = await _dbContext.Set<$modelclass$>().Where(
 					expression
 					).FirstOrDefaultAsync(
 					    cancellationToken
@@ -371,34 +309,13 @@ namespace $newnamespace$
 			{
 				// Log what we are about to do.
 				_logger.LogDebug(
-					"Creating a $efcorecontextclass$ data-context"
-					);
-
-				// Create a database context.
-				using var dbContext = await _dbContextFactory.CreateDbContextAsync(
-					cancellationToken
-					).ConfigureAwait(false);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
-					"Attaching a $modelclass$ instance to the $efcorecontextclass$ " +
-					"data-context"
-					);
-
-				// Get a tracked instance from the data-store.
-				var trackedMimeType = dbContext.Set<$modelclass$>().Attach(
-					model
-					);
-
-				// Log what we are about to do.
-				_logger.LogDebug(
 					"Updating a $modelclass$ instance from the " +
 					"$efcorecontextclass$ data-context"
 					);
 
 				// Update the entity.
-				dbContext.Set<$modelclass$>().Update(
-					trackedMimeType.Entity
+				var tracked = _dbContext.Set<$modelclass$>().Update(
+					model
 					);
 
                 // Log what we are about to do.
@@ -407,12 +324,12 @@ namespace $newnamespace$
 					);
 
 				// Save the changes.
-				await dbContext.SaveChangesAsync(
+				await _dbContext.SaveChangesAsync(
 					cancellationToken
 					).ConfigureAwait(false);
 	
 				// Return the results
-                return trackedMimeType.Entity;
+                return tracked.Entity;
 			}
 			catch (Exception ex)
 			{

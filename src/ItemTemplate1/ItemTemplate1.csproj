@@ -54,6 +54,7 @@
   <ItemGroup>
     <None Include="RepositoryException.cs" />
     <None Include="EfCoreRepository.cs" />
+    <None Include="EfCoreRepository2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="IRepository.cs" />
   </ItemGroup>

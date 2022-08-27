@@ -3,12 +3,14 @@
 using CG.Ruby.UI;
 using CG.Ruby.UI.ViewModels;
 using EnvDTE;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using System.Windows.Interop;
 #endregion
 
 namespace CG.Ruby.VSIXProject
@@ -39,6 +41,11 @@ namespace CG.Ruby.VSIXProject
         /// This field indicates whether the repository type exists in the solution.
         /// </summary>
         private bool _repositoryTypeFound;
+
+        /// <summary>
+        /// This field indicates whether the repository will use a factory for data-contexts.
+        /// </summary>
+        private bool _useDataContext;
 
         #endregion
 
@@ -74,7 +81,7 @@ namespace CG.Ruby.VSIXProject
 
                 // Create the wizard UI.
                 var form = new WizardWindow();
-                
+
                 // Initialize the wizard form's view-model.
                 var viewModel = (form.DataContext as WizardViewModel);
                 if (null != viewModel)
@@ -86,6 +93,9 @@ namespace CG.Ruby.VSIXProject
                     viewModel.ClassName = replacementsDictionary["$safeitemname$"];
                     viewModel.IFaceName = "I" + replacementsDictionary["$safeitemname$"];
 
+                    viewModel.UseDataContextFactory = true;
+
+                    viewModel.AddAnyAsync = true;
                     viewModel.AddCreateAsync = true;
                     viewModel.AddDeleteAsync = true;
                     viewModel.AddUpdateAsync = true;
@@ -112,6 +122,8 @@ namespace CG.Ruby.VSIXProject
                         viewModel.SelectedRepoType
                         );
 
+                    _useDataContext = viewModel.UseDataContextFactory;
+
                     replacementsDictionary["$newnamespace$"] =
                         viewModel.NameSpace.TrimEnd('.').TrimStart('.');
                     replacementsDictionary["$newclassname$"] =
@@ -119,6 +131,8 @@ namespace CG.Ruby.VSIXProject
                     replacementsDictionary["$newifacename$"] = 
                         viewModel.IFaceName.TrimEnd('.').TrimStart('.');
 
+                    replacementsDictionary["$addanyasync$"] =
+                        viewModel.AddAnyAsync ? "true" : "false";
                     replacementsDictionary["$addcreateasync$"] =
                         viewModel.AddCreateAsync ? "true" : "false";
                     replacementsDictionary["$adddeleteasync$"] =
@@ -145,6 +159,9 @@ namespace CG.Ruby.VSIXProject
                             viewModel.SelectedEfCoreContextNamespace;
                         replacementsDictionary["$efcorecontextclass$"] =
                             viewModel.SelectedEfCoreContextClass;
+
+                        replacementsDictionary["$usedatacontextfactory$"] =
+                            viewModel.UseDataContextFactory ? "true" : "false";
                     }
                 }
             }
@@ -192,7 +209,9 @@ namespace CG.Ruby.VSIXProject
             switch(_repositoryType)
             {
                 case RepositoryTypes.EfCore:
-                    retValue = "EfCoreRepository" == fileName;
+                    retValue = _useDataContext 
+                        ? "EfCoreRepository" == fileName
+                        : "EfCoreRepository2" == fileName;
                     break;
                 case RepositoryTypes.Default:
                     retValue = "DefaultRepository" == fileName;

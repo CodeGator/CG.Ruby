@@ -36,11 +36,13 @@ namespace TestUI
             var viewModel = window.DataContext as WizardViewModel;
 
             // Setup the view-model just like it would be in VS.
+            viewModel.AddAnyAsync = true;
             viewModel.AddCreateAsync = true;
             viewModel.AddDeleteAsync = false;
             viewModel.AddFindAsync = true;
             viewModel.AddFindSingleAsync = false;
             viewModel.AddUpdateAsync = true;
+            viewModel.UseDataContextFactory = true;
             viewModel.NameSpace = "Repositories";
             viewModel.IFaceName = "IFooRepository";
             viewModel.ClassName = "FooRepository";
