@@ -82,7 +82,16 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.4.23-preview1" />
+    <PackageReference Include="Syncfusion.Licensing">
+      <Version>20.2.0.45</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfSkinManager.WPF">
+      <Version>20.2.0.45</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Shared.WPF">
+      <Version>20.2.0.45</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Tools.WPF">
       <Version>20.2.0.45</Version>
     </PackageReference>
   </ItemGroup>
