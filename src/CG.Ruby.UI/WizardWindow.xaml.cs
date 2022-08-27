@@ -113,7 +113,7 @@ namespace CG.Ruby.UI
             )
         {
             // Open the help site.
-            System.Diagnostics.Process.Start("https://codegator.github.io/CG.Ruby/index.html");
+            System.Diagnostics.Process.Start("https://github.com/CodeGator/CG.Ruby");
         }
 
         #endregion
