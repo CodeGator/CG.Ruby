@@ -20,7 +20,7 @@ steps:
   inputs:
     versionSpec: '5.1.0'
     checkLatest: true
-- 
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
