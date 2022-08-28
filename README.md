@@ -22,6 +22,7 @@ We have a discussion group [HERE](https://github.com/CodeGator/CG.Ruby/discussio
 #### Is there any documentation?
 There is developer documentation [HERE](https://codegator.github.io/CG.Ruby/)
 
+---
 We also blog about projects like this one on our website, [HERE](http://www.codegator.com)
 ---
 #### Disclaimer
