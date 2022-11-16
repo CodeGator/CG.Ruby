@@ -71,6 +71,15 @@ namespace CG.Ruby.VSIXProject
                 // Recover the VS object.
                 var dte = automationObject as DTE;
 
+                // Did we fail?
+                if (dte is null)
+                {
+                    // Panic!!
+                    throw new ArgumentException(
+                        "The automation object, from Visual Studio, in NOT a DTE!"
+                        );
+                }
+
                 // Walk the entire Visual Studio solution tree looking for
                 // potential model classes.
                 var table = new Dictionary<string, Dictionary<string, List<string>>>();

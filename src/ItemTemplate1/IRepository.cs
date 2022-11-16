@@ -16,10 +16,10 @@ namespace $newnamespace$
 	/// </summary>
 	public interface $newifacename$
 	{
-	$if$ ($addanyasync$ == true)
+		$if$ ($addanyasync$ == true)
 		/// <summary>
 		/// This method indicates whether there are any <see cref="$modelclass$"/> objects 
-		/// in the underlying storage.
+		/// in the underlying storage that match the given LINQ expression.
 		/// </summary>
 		/// <param name="expression">The LINQ expression to use for the search.</param>
 		/// <param name="cancellationToken">A cancellation token that is monitored
@@ -35,7 +35,7 @@ namespace $newnamespace$
             Expression<Func<$modelclass$, bool>> expression,
             CancellationToken cancellationToken = default
             );
-		$if$ ($addcreateasync$ == true)
+		$endif$ $if$ ($addcreateasync$ == true)
 		/// <summary>
 		/// This method creates a new <see cref="$modelclass$"/> object in the 
 		/// underlying storage.
