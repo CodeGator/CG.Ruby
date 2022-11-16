@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Linq.Expressions;
 using $modelnamespace$;
+
 #endregion
 
 namespace $newnamespace$
@@ -15,6 +16,25 @@ namespace $newnamespace$
 	/// </summary>
 	public interface $newifacename$
 	{
+	$if$ ($addanyasync$ == true)
+		/// <summary>
+		/// This method indicates whether there are any <see cref="$modelclass$"/> objects 
+		/// in the underlying storage.
+		/// </summary>
+		/// <param name="expression">The LINQ expression to use for the search.</param>
+		/// <param name="cancellationToken">A cancellation token that is monitored
+		/// for the lifetime of the method.</param>
+		/// <returns>A task to perform the operation that returns <c>true</c> if there 
+		/// are any <see cref="$modelclass$"/> objects that match the given LINQ 
+		/// expression; <c>false</c> otherwise.</returns>
+		/// <exception cref="ArgumentException">This exception is thrown whenever one
+		/// or more arguments are missing, or invalid.</exception>
+		/// <exception cref="RepositoryException">This exception is thrown whenever the
+		/// repository fails to complete the operation.
+		Task<bool> AnyAsync(
+            Expression<Func<$modelclass$, bool>> expression,
+            CancellationToken cancellationToken = default
+            );
 		$if$ ($addcreateasync$ == true)
 		/// <summary>
 		/// This method creates a new <see cref="$modelclass$"/> object in the 

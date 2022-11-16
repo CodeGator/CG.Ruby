@@ -84,8 +84,7 @@ namespace $newnamespace$
 
 				// Log what we are about to do.
 				_logger.LogDebug(
-                    "Creating a new $modelclass$ instance in the " +
-					"$efcorecontextclass$ data-context"
+                    "Searching for $modelclass$ instances"
                     );
 
 				// Create the entity in the data-store.
@@ -102,14 +101,13 @@ namespace $newnamespace$
 				// Log what happened.
 				_logger.LogError(
 					ex,
-                    "Failed to search for matching $modelclass$ instances in " +
-					"the $efcorecontextclass$ data-context"
+                    "Failed to search for $modelclass$ instances"
                     );
 
 				// Provider better context.
 				throw new RepositoryException(
-					message: $"The repository failed to search for matching " +
-					"$modelclass$ instances in the $efcorecontextclass$ data-context!",
+					message: $"The repository failed to search for $modelclass$ " +
+					"instances!",
 					innerException: ex
 					);
 			}
@@ -166,14 +164,13 @@ namespace $newnamespace$
 				// Log what happened.
 				_logger.LogError(
 					ex,
-                    "Failed to create a $modelclass$ instance in the " +
-					"$efcorecontextclass$ data-context"
+                    "Failed to create a $modelclass$ instance"
                     );
 
 				// Provider better context.
 				throw new RepositoryException(
 					message: $"The repository failed to create a $modelclass$ " +
-					"instance in the $efcorecontextclass$ data-context!",
+					"instance!",
 					innerException: ex
 					);
 			}
@@ -237,14 +234,13 @@ namespace $newnamespace$
 				// Log what happened.
 				_logger.LogError(
 					ex,
-					"Failed to remove a $modelclass$ instance from the " +
-					"$efcorecontextclass$ data-context"
+					"Failed to remove a $modelclass$ instance"
 					);
 
 				// Provider better context.
 				throw new RepositoryException(
 					message: $"The repository failed to remove a $modelclass$ " +
-					"instance from the $efcorecontextclass$ data-context!",
+					"instance!",
 					innerException: ex
 					);
 			}
@@ -290,15 +286,13 @@ namespace $newnamespace$
 				// Log what happened.
 				_logger.LogError(
 					ex,
-					"Failed to search for matching $modelclass$ instances from " +
-					"the $efcorecontextclass$ data-context"
+					"Failed to search for matching $modelclass$ instances"
 					);
 
 				// Provider better context.
 				throw new RepositoryException(
 					message: $"The repository failed to search for matching " +
-					$"$modelclass$ instances from the $efcorecontextclass$ " +
-					"data-context!",
+					$"$modelclass$ instances!",
 					innerException: ex
 					);
 			}
@@ -345,15 +339,13 @@ namespace $newnamespace$
 				// Log what happened.
 				_logger.LogError(
 					ex,
-					"Failed to search for a matching $modelclass$ instance from " +
-					"the $efcorecontextclass$ data-context"
+					"Failed to search for a matching $modelclass$ instance"
 					);
 
 				// Provider better context.
 				throw new RepositoryException(
 					message: $"The repository failed to search for a matching " +
-					$"$modelclass$ instance from the $efcorecontextclass$ " +
-					"data-context!",
+					$"$modelclass$ instance!",
 					innerException: ex
 					);
 			}
@@ -419,14 +411,13 @@ namespace $newnamespace$
 				// Log what happened.
 				_logger.LogError(
 					ex,
-					"Failed to update a $modelclass$ instance in the " +
-					"$efcorecontextclass$ data-context"
+					"Failed to update a $modelclass$ instance"
 					);
 
 				// Provider better context.
 				throw new RepositoryException(
 					message: $"The repository failed to update a $modelclass$ " +
-					"instance in the $efcorecontextclass$ data-context!",
+					"instance!",
 					innerException: ex
 					);
 			}

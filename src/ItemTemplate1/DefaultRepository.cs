@@ -20,7 +20,7 @@ namespace $newnamespace$
         // *******************************************************************
 		
 		#region Public methods
-		$if$ ($addcreateasync$ == true)
+		$if$ ($addanyasync$ == true)
 		/// <inheritdoc/>
 		public virtual async Task<bool> AnyAsync(
             Expression<Func<$modelclass$, bool>> expression,
